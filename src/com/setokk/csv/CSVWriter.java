@@ -1,4 +1,4 @@
-package com.company.csv;
+package com.setokk.csv;
 
 public final class CSVWriter
 {

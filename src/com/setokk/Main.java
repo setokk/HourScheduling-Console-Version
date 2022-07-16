@@ -1,8 +1,8 @@
-package com.company;
+package com.setokk;
 
-import com.company.csv.CSVReader;
-import com.company.csv.frequencycalculator.FrequencyCalculator;
-import com.company.csv.splitter.Splitter;
+import com.setokk.csv.CSVReader;
+import com.setokk.csv.frequencycalculator.FrequencyCalculator;
+import com.setokk.csv.splitter.Splitter;
 
 import java.util.ArrayList;
 import java.util.List;

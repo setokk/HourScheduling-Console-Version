@@ -1,4 +1,4 @@
-package com.company.csv.splitter;
+package com.setokk.csv.splitter;
 
 import java.util.ArrayList;
 import java.util.List;

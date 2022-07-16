@@ -1,9 +1,9 @@
-package com.company.csv.frequencycalculator;
+package com.setokk.csv.frequencycalculator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.company.Main.TOTAL_DAYS_IN_WEEK;
+import static com.setokk.Main.TOTAL_DAYS_IN_WEEK;
 
 public class FrequencyCalculator
 {

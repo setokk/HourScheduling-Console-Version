@@ -1,4 +1,4 @@
-package com.company.csv;
+package com.setokk.csv;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
