@@ -1,17 +1,38 @@
 package com.setokk.csv.frequencycalculator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static com.setokk.Main.TOTAL_DAYS_IN_WEEK;
 
 public class FrequencyCalculator
 {
-    public static List<List<Double>> calculateHourFrequencies()
+    public static List<HashMap<Double, Integer>> calculateHourFrequencies(List<List<Double>> convertedTimes)
     {
-        List<List<Double>> hourFrequencies = new ArrayList<>(TOTAL_DAYS_IN_WEEK - 2);
+        List<HashMap<Double, Integer>> hourFrequencies = new ArrayList<>();
 
+        for (int i = 0; i < TOTAL_DAYS_IN_WEEK; i++)
+        {
+            hourFrequencies.add(new HashMap<>());
+        }
 
+        for (int i = 0; i < convertedTimes.size(); i++)
+        {
+            List<Double> convertedTime = convertedTimes.get(i);
+
+            for (Double time : convertedTime)
+            {
+                if (!hourFrequencies.get(i % TOTAL_DAYS_IN_WEEK).containsKey(time))
+                {
+                    hourFrequencies.get(i % TOTAL_DAYS_IN_WEEK).put(time, 1);
+                }
+                else
+                {
+                    hourFrequencies.get(i % TOTAL_DAYS_IN_WEEK).put(time, hourFrequencies.get(i % TOTAL_DAYS_IN_WEEK).get(time) + 1);
+                }
+            }
+        }
 
         return hourFrequencies;
     }
