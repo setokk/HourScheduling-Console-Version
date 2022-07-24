@@ -1,8 +1,9 @@
 package com.setokk;
 
 import com.setokk.csv.CSVReader;
-import com.setokk.csv.frequencycalculator.FrequencyCalculator;
-import com.setokk.csv.splitter.Splitter;
+import com.setokk.csv.CSVWriter;
+import com.setokk.frequencycalculator.FrequencyCalculator;
+import com.setokk.splitter.Splitter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class Main
 {
-    public static final int TOTAL_DAYS_IN_WEEK = 5;
+    public static final int TOTAL_DAYS_IN_WEEK = 7;
 
     public static void main(String[] args)
     {
@@ -31,16 +32,9 @@ public class Main
             }
         }
 
-        for (int i = 0; i < convertedTimes.size(); i++)
-        {
-            for (int j = 0; j < convertedTimes.get(i).size(); j++)
-            {
-                System.out.print(convertedTimes.get(i).get(j) + ", ");
-            }
-            System.out.println();
-        }
-
         // Hour frequencies for each day
         List<HashMap<Double, Integer>> hourFrequencies = FrequencyCalculator.calculateHourFrequencies(convertedTimes);
+
+        System.out.println(CSVWriter.writeCSVFile(hourFrequencies));
     }
 }

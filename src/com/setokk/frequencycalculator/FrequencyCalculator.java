@@ -1,4 +1,4 @@
-package com.setokk.csv.frequencycalculator;
+package com.setokk.frequencycalculator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
