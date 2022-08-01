@@ -1,5 +1,7 @@
 package com.setokk.csv;
 
+import com.setokk.calculations.Calculations;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -7,8 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
-import static com.setokk.Main.TOTAL_DAYS_IN_WEEK;
 
 public final class CSVReader
 {
@@ -19,6 +19,8 @@ public final class CSVReader
         // Create new list
         result = new ArrayList<>();
 
+        int numberOfPeople = 0;
+
         String line;
         String splitBy = ",";
 
@@ -27,7 +29,13 @@ public final class CSVReader
             BufferedReader bufferedReader = new BufferedReader(new FileReader(name));
 
             while ((line = bufferedReader.readLine()) != null)
+            {
                 result.add(Arrays.asList(line.split(splitBy, -1)));
+                numberOfPeople++;
+            }
+
+            numberOfPeople--; // We disregard the first line ("Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday")
+            Calculations.setNumberOfPeople(numberOfPeople);
 
             bufferedReader.close();
         }

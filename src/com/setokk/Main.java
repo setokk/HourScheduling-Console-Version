@@ -6,6 +6,7 @@ import com.setokk.csv.CSVWriter;
 import com.setokk.frequencycalculator.FrequencyCalculator;
 import com.setokk.splitter.Splitter;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,17 +18,33 @@ public class Main
 
     public static void main(String[] args)
     {
+        // Read file name
         String filename;
 
         Scanner scanner = new Scanner(System.in);
         do
         {
-            System.out.println("Please enter a .csv file name: ");
+            System.out.println("Please enter the .csv file's path name: ");
             filename = scanner.nextLine();
 
         } while (!CSVUtilities.checkFileExtension(filename));
 
 
+        // Read path to save result file
+        String pathToSave;
+        boolean isDirectory;
+
+        do
+        {
+            System.out.println("Please enter a path to save result file (must be directory): ");
+            pathToSave = scanner.nextLine();
+
+            File path = new File(pathToSave);
+            isDirectory = path.isDirectory();
+
+        } while (!isDirectory);
+
+        // Read csv input file
         CSVReader.readCSVFile(filename);
         List<List<String>> result = CSVReader.getResult().orElseThrow();
 
@@ -46,12 +63,12 @@ public class Main
         // Hour frequencies for each day
         List<HashMap<Double, Integer>> hourFrequencies = FrequencyCalculator.calculateHourFrequencies(convertedTimes);
 
-        if (!CSVWriter.writeCSVFile(hourFrequencies))
+        if (!CSVWriter.writeCSVFile(hourFrequencies, pathToSave))
         {
             System.out.println("An error occurred. Please check the csv file extension/format.");
             System.exit(1);
         }
 
-        System.out.println("Result file was created successfully!");
+        System.out.println("Result file was created successfully at " + pathToSave + "!");
     }
 }

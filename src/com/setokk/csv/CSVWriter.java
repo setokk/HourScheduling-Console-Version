@@ -1,5 +1,7 @@
 package com.setokk.csv;
 
+import com.setokk.calculations.Calculations;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -15,7 +17,7 @@ public final class CSVWriter
     public static final int RANDOM_ID_BOUND = 2000000;
     public static final int LOWER_ID_BOUND = 1000000;
 
-    public static boolean writeCSVFile(List<HashMap<Double, Integer>> hourFrequencies)
+    public static boolean writeCSVFile(List<HashMap<Double, Integer>> hourFrequencies, String pathToSave)
     {
         boolean write_status = true; // True if no error occurred (return value of function)
 
@@ -23,7 +25,7 @@ public final class CSVWriter
         Random rand = new Random(System.currentTimeMillis());
 
         // Create file
-        File csvOutput = new File(System.getProperty("user.dir") + "/result - " + (rand.nextInt(RANDOM_ID_BOUND) + LOWER_ID_BOUND) + ".csv");
+        File csvOutput = new File(pathToSave + "/result - " + (rand.nextInt(RANDOM_ID_BOUND) + LOWER_ID_BOUND) + ".csv");
 
         // Write to file
         try
@@ -58,13 +60,20 @@ public final class CSVWriter
 
                     if (key != -1)
                     {
+                        double percentage;
+
+                        if (Calculations.getNumberOfPeople() == 0)
+                            percentage = 0;
+                        else
+                            percentage = ((double) frequency / (double) Calculations.getNumberOfPeople()) * 100;
+
                         if (frequency == 1)
                         {
-                            hours.append(stringKey + " (" + frequency + " person)" + splitBy);
+                            hours.append(stringKey + " (" + frequency + " person - " + percentage + "%)" + splitBy);
                         }
                         else if (frequency != -1)
                         {
-                            hours.append(stringKey + " (" + frequency + " people)" + splitBy);
+                            hours.append(stringKey + " (" + frequency + " people - " + percentage + "%)" + splitBy);
                         }
                     }
 
