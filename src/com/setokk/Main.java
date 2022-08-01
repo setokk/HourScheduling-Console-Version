@@ -31,15 +31,15 @@ public class Main
 
 
         // Read path to save result file
-        String pathToSave;
+        String resultPath;
         boolean isDirectory;
 
         do
         {
             System.out.println("Please enter a path to save result file (must be directory): ");
-            pathToSave = scanner.nextLine();
+            resultPath = scanner.nextLine();
 
-            File path = new File(pathToSave);
+            File path = new File(resultPath);
             isDirectory = path.isDirectory();
 
         } while (!isDirectory);
@@ -63,12 +63,12 @@ public class Main
         // Hour frequencies for each day
         List<HashMap<Double, Integer>> hourFrequencies = FrequencyCalculator.calculateHourFrequencies(convertedTimes);
 
-        if (!CSVWriter.writeCSVFile(hourFrequencies, pathToSave))
+        if (!CSVWriter.writeCSVFile(hourFrequencies, resultPath))
         {
             System.out.println("An error occurred. Please check the csv file extension/format.");
             System.exit(1);
         }
 
-        System.out.println("Result file was created successfully at " + pathToSave + "!");
+        System.out.println("Result file was created successfully at " + resultPath + "!");
     }
 }

@@ -17,7 +17,7 @@ public final class CSVWriter
     public static final int RANDOM_ID_BOUND = 2000000;
     public static final int LOWER_ID_BOUND = 1000000;
 
-    public static boolean writeCSVFile(List<HashMap<Double, Integer>> hourFrequencies, String pathToSave)
+    public static boolean writeCSVFile(List<HashMap<Double, Integer>> hourFrequencies, String resultPath)
     {
         boolean write_status = true; // True if no error occurred (return value of function)
 
@@ -25,7 +25,7 @@ public final class CSVWriter
         Random rand = new Random(System.currentTimeMillis());
 
         // Create file
-        File csvOutput = new File(pathToSave + "/result - " + (rand.nextInt(RANDOM_ID_BOUND) + LOWER_ID_BOUND) + ".csv");
+        File csvOutput = new File(resultPath + "/result - " + (rand.nextInt(RANDOM_ID_BOUND) + LOWER_ID_BOUND) + ".csv");
 
         // Write to file
         try
