@@ -27,7 +27,7 @@ public class Main
             System.out.println("Please enter the .csv file's path name: ");
             filename = scanner.nextLine();
 
-        } while (!CSVUtilities.checkFileExtension(filename));
+        } while (!CSVUtilities.hasValidExtension(filename));
 
 
         // Read path to save result file
