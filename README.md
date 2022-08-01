@@ -10,6 +10,7 @@ Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
 15:00 | | |19:00 |12:00/11:00 |
 15:00 | | | | 11:00/13:00 |
 16:00 | | | 19:00 | |
+#### where each row represents a person and the hours they can attend a meeting.
 
 ## Requirements
 This project requires:
