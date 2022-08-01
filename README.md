@@ -1,6 +1,6 @@
 # HourScheduling (Console Version)
 #### HourScheduling is a simple app that facilitates the process of finding the best hours and days for a meeting to take place 
-#### for a large number of people.
+for a large number of people.
 
 ## Using the app
 - ### Input File
