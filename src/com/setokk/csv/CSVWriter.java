@@ -17,7 +17,7 @@ public final class CSVWriter
 
     public static boolean writeCSVFile(List<HashMap<Double, Integer>> hourFrequencies)
     {
-        boolean write_status = true; // True if no error occurred
+        boolean write_status = true; // True if no error occurred (return value of function)
 
         // Random id number
         Random rand = new Random(System.currentTimeMillis());

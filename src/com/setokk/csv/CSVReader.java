@@ -33,6 +33,7 @@ public final class CSVReader
         }
         catch (IOException e)
         {
+            System.out.println("The file " + "'" + name + "' was not found. Please try again.");
             System.exit(1);
         }
     }

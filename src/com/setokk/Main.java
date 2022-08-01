@@ -1,6 +1,7 @@
 package com.setokk;
 
 import com.setokk.csv.CSVReader;
+import com.setokk.csv.CSVUtilities;
 import com.setokk.csv.CSVWriter;
 import com.setokk.frequencycalculator.FrequencyCalculator;
 import com.setokk.splitter.Splitter;
@@ -8,6 +9,7 @@ import com.setokk.splitter.Splitter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main
 {
@@ -15,7 +17,16 @@ public class Main
 
     public static void main(String[] args)
     {
-        String filename = System.getProperty("user.dir") + "\\Demo.csv";
+        String filename;
+
+        Scanner scanner = new Scanner(System.in);
+        do
+        {
+            System.out.println("Please enter a .csv file name: ");
+            filename = scanner.nextLine();
+
+        } while (!CSVUtilities.checkFileExtension(filename));
+
 
         CSVReader.readCSVFile(filename);
         List<List<String>> result = CSVReader.getResult().orElseThrow();
@@ -35,6 +46,12 @@ public class Main
         // Hour frequencies for each day
         List<HashMap<Double, Integer>> hourFrequencies = FrequencyCalculator.calculateHourFrequencies(convertedTimes);
 
-        System.out.println(CSVWriter.writeCSVFile(hourFrequencies));
+        if (!CSVWriter.writeCSVFile(hourFrequencies))
+        {
+            System.out.println("An error occurred. Please check the csv file extension/format.");
+            System.exit(1);
+        }
+
+        System.out.println("Result file was created successfully!");
     }
 }
